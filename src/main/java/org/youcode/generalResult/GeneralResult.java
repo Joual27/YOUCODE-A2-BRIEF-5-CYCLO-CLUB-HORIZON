@@ -31,4 +31,46 @@ public class GeneralResult{
     @MapsId("competitionId")
     private Competition competition;
 
+    public GeneralResult(){}
+
+    public GeneralResultKey getId() {
+        return id;
+    }
+
+    public void setId(GeneralResultKey id) {
+        this.id = id;
+    }
+
+    public Duration getOverallTime() {
+        return overallTime;
+    }
+
+    public void setOverallTime(Duration overallTime) {
+        this.overallTime = overallTime;
+    }
+
+    public int getOverallRank() {
+        return overallRank;
+    }
+
+    public void setOverallRank(int overallRank) {
+        this.overallRank = overallRank;
+    }
+
+    public Cyclist getCyclist() {
+        return cyclist;
+    }
+
+    public void setCyclist(Cyclist cyclist) {
+        this.cyclist = cyclist;
+    }
+
+    public Competition getCompetition() {
+        return competition;
+    }
+
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
+    }
+
 }

@@ -11,7 +11,6 @@ public class DataSourceSyncHandler {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.close();
-            HibernateUtil.shutdown();
             System.out.println("Database schema updated!");
         } catch (Exception e) {
             throw new RuntimeException(e);

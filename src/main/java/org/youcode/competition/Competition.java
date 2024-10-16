@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import org.youcode.generalResult.GeneralResult;
 import org.youcode.shared.BaseEntity;
+import org.youcode.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -26,4 +27,56 @@ public class Competition extends BaseEntity {
     @OneToMany(mappedBy = "competition")
     private List<GeneralResult> generalResults;
 
+    @OneToMany(mappedBy = "competition")
+    private List<Stage> stages ;
+
+    public Competition(){}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public List<GeneralResult> getGeneralResults() {
+        return generalResults;
+    }
+
+    public void setGeneralResults(List<GeneralResult> generalResults) {
+        this.generalResults = generalResults;
+    }
+
+    public List<Stage> getStages() {
+        return stages;
+    }
+
+    public void setStages(List<Stage> stages) {
+        this.stages = stages;
+    }
 }

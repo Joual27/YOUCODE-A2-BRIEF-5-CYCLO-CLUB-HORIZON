@@ -17,4 +17,22 @@ public class Team extends BaseEntity {
 
     @OneToMany(mappedBy = "")
     private List<Cyclist> members;
+
+    public Team(){};
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Cyclist> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Cyclist> members) {
+        this.members = members;
+    }
 }

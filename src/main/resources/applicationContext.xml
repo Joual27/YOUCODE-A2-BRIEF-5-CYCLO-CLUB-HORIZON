@@ -1,0 +1,12 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="competitionDao" class="org.youcode.competition.CompetitionDao" />
+    <bean id="cyclistDao" class="org.youcode.cyclist.CyclistDao" />
+    <bean id="generalResultDao" class="org.youcode.generalResult.GeneralResultDao" />
+    <bean id="resultDao" class="org.youcode.result.ResultDao" />
+    <bean id="stageDao" class="org.youcode.stage.StageDao" />
+    
+</beans>

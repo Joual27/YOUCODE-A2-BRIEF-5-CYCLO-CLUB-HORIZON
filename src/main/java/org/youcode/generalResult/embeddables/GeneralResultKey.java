@@ -16,6 +16,8 @@ public class GeneralResultKey implements Serializable {
     @Column(name="COMPETITION_ID")
     private Long competitionId;
 
+    public GeneralResultKey(){}
+
     public Long getCyclistId() {
         return cyclistId;
     }
@@ -45,5 +47,6 @@ public class GeneralResultKey implements Serializable {
     public int hashCode() {
         return Objects.hash(cyclistId, competitionId);
     }
+
 
 }

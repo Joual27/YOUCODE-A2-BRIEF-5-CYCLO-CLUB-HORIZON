@@ -29,8 +29,19 @@ public class CyclistService implements CyclistServiceI {
         cyclistDao.update(c);
         return c;
     }
-    public Cyclist delete(Long id){
+    public Cyclist deleteById(Long id){
+        Cyclist cyclistToDelete = getCyclistById(id);
         cyclistDao.deleteById(id);
-        return getCyclistById(id);
+        return cyclistToDelete;
+    }
+
+    public List<Cyclist> getOrderedCyclistListByName(){
+        return cyclistDao.sortCyclistByName();
+    }
+    public List<Cyclist> getOrderedCyclistListByNationality(){
+        return cyclistDao.sortCyclistByNationality();
+    }
+    public List<Cyclist> getOrderedCyclistListByTeam(){
+        return cyclistDao.sortCyclistByTeam();
     }
 }

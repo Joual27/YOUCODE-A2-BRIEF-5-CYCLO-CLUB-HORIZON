@@ -2,6 +2,7 @@ package org.youcode.competition;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import org.youcode.generalResult.GeneralResult;
 import org.youcode.shared.BaseEntity;
@@ -24,10 +25,13 @@ public class Competition extends BaseEntity {
     @Column(name = "END_DATE")
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "competition")
+    @Column(name = "NUMBER_OF_STAGES")
+    private int numberOfStages;
+
+    @OneToMany(mappedBy = "competition" , fetch = FetchType.EAGER)
     private List<GeneralResult> generalResults;
 
-    @OneToMany(mappedBy = "competition")
+    @OneToMany(mappedBy = "competition", fetch = FetchType.EAGER)
     private List<Stage> stages ;
 
     public Competition(){}
@@ -78,5 +82,13 @@ public class Competition extends BaseEntity {
 
     public void setStages(List<Stage> stages) {
         this.stages = stages;
+    }
+
+    public int getNumberOfStages(){
+        return numberOfStages;
+    }
+
+    public void setNumberOfStages(int numberOfStages){
+        this.numberOfStages = numberOfStages;
     }
 }

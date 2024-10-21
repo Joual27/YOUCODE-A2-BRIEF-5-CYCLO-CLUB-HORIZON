@@ -1,4 +1,5 @@
-package org.youcode.generalResult.interfaces
-
-interface GeneralResultServiceI {
-}
+//package org.youcode.generalResult.interfaces
+//
+//interface GeneralResultServiceI {
+//
+//}

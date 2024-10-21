@@ -1,10 +1,7 @@
 package org.youcode.cyclist;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import org.youcode.generalResult.GeneralResult;
 import org.youcode.result.Result;
 import org.youcode.shared.BaseEntity;
@@ -30,10 +27,10 @@ public class Cyclist extends BaseEntity {
     @ManyToOne
     private Team team;
 
-    @OneToMany(mappedBy = "cyclist")
+    @OneToMany(mappedBy = "cyclist" , fetch = FetchType.EAGER)
     private List<GeneralResult> generalResults;
 
-    @OneToMany(mappedBy = "cyclist")
+    @OneToMany(mappedBy = "cyclist" , fetch = FetchType.EAGER)
     private List<Result> results;
 
     public Cyclist(){}

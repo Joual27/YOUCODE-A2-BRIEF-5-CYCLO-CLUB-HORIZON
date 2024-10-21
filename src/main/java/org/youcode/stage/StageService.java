@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class StageService implements StageServiceI {
-
     private final StageDaoI stageDao;
 
     public StageService(StageDaoI stageDao){

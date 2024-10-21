@@ -9,9 +9,8 @@ import org.youcode.competition.interfaces.CompetitionServiceI;
 import org.youcode.cyclist.CyclistService;
 import org.youcode.cyclist.interfaces.CyclistDaoI;
 import org.youcode.cyclist.interfaces.CyclistServiceI;
-import org.youcode.generalResult.GeneralResultService;
 import org.youcode.generalResult.interfaces.GeneralResultDaoI;
-import org.youcode.generalResult.interfaces.GeneralResultServiceI;
+
 import org.youcode.result.ResultService;
 import org.youcode.result.interfaces.ResultDaoI;
 import org.youcode.result.interfaces.ResultServiceI;
@@ -32,10 +31,10 @@ public class ServiceConfig {
         return new CyclistService(cyclistDao);
     }
 
-    @Bean
-    public GeneralResultServiceI generalResultService(GeneralResultDaoI generalResultDao){
-        return new GeneralResultService(generalResultDao);
-    }
+//    @Bean
+//    public GeneralResultServiceI generalResultService(GeneralResultDaoI generalResultDao){
+//        return new GeneralResultService(generalResultDao);
+//    }
 
     @Bean
     public ResultServiceI resultService(ResultDaoI resultDao){

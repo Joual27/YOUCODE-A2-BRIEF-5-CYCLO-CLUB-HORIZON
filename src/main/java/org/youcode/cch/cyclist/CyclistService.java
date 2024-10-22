@@ -33,7 +33,7 @@ public class CyclistService implements CyclistServiceI {
     }
 
     @Override
-    public Cyclist save(Cyclist c){
+    public Cyclist save(CyclistResponseDTO c){
         cyclistDao.save(c);
         return c;
     }

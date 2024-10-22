@@ -2,9 +2,8 @@ package org.youcode.cch.cyclist;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.youcode.cch.cyclist.DTOs.CreateCyclistDTO;
 import org.youcode.cch.cyclist.DTOs.CyclistResponseDTO;
 import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
 
@@ -28,4 +27,10 @@ public class CyclistController {
         }
         return new ResponseEntity<>(cyclists, HttpStatus.OK);
     }
+
+    @PostMapping("/create")
+    public ResponseEntity<CyclistResponseDTO> createCyclist(@RequestBody CreateCyclistDTO createCyclistDTO){
+
+    }
+
 }

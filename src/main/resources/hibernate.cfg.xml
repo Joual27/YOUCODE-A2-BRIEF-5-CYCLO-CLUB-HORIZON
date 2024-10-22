@@ -11,11 +11,11 @@
         <property name="hbm2ddl.auto">update</property>
 
 
-        <mapping class="org.youcode.competition.Competition"/>
-        <mapping class="org.youcode.cyclist.Cyclist"/>
-        <mapping class="org.youcode.generalResult.GeneralResult"/>
-        <mapping class="org.youcode.result.Result"/>
-        <mapping class="org.youcode.stage.Stage"/>
-        <mapping class="org.youcode.team.Team"/>
+        <mapping class="org.youcode.cch.competition.Competition"/>
+        <mapping class="org.youcode.cch.cyclist.Cyclist"/>
+        <mapping class="org.youcode.cch.generalResult.GeneralResult"/>
+        <mapping class="org.youcode.cch.result.Result"/>
+        <mapping class="org.youcode.cch.stage.Stage"/>
+        <mapping class="org.youcode.cch.team.Team"/>
     </session-factory>
 </hibernate-configuration>

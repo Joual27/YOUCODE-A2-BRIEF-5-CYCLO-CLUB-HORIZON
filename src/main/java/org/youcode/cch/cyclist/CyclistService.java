@@ -1,8 +1,10 @@
 package org.youcode.cch.cyclist;
 
+import org.youcode.cch.cyclist.DTOs.CreateCyclistDTO;
 import org.youcode.cch.cyclist.DTOs.CyclistResponseDTO;
 import org.youcode.cch.cyclist.interfaces.CyclistDaoI;
 import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
+import org.youcode.cch.cyclist.mappers.CreateCyclistDTOToCyclistEntityMapper;
 import org.youcode.cch.cyclist.mappers.CyclistEntityToCyclistResponseDTOMapper;
 
 import java.util.List;
@@ -13,10 +15,12 @@ public class CyclistService implements CyclistServiceI {
 
     private final CyclistDaoI cyclistDao;
     private final CyclistEntityToCyclistResponseDTOMapper cyclistEntityToCyclistResponseDTOMapper;
+    private final CreateCyclistDTOToCyclistEntityMapper createCyclistDTOToCyclistEntityMapper;
 
-    public CyclistService(CyclistDaoI cyclistDao , CyclistEntityToCyclistResponseDTOMapper cyclistEntityToCyclistResponseDTOMapper){
+    public CyclistService(CyclistDaoI cyclistDao , CyclistEntityToCyclistResponseDTOMapper cyclistEntityToCyclistResponseDTOMapper , CreateCyclistDTOToCyclistEntityMapper createCyclistDTOToCyclistEntityMapper){
         this.cyclistDao = cyclistDao ;
         this.cyclistEntityToCyclistResponseDTOMapper = cyclistEntityToCyclistResponseDTOMapper;
+        this.createCyclistDTOToCyclistEntityMapper = createCyclistDTOToCyclistEntityMapper;
     }
 
     @Override
@@ -33,9 +37,11 @@ public class CyclistService implements CyclistServiceI {
     }
 
     @Override
-    public Cyclist save(CyclistResponseDTO c){
-        cyclistDao.save(c);
-        return c;
+    public CyclistResponseDTO save(CreateCyclistDTO c){
+        Cyclist cyclistToCreate = createCyclistDTOToCyclistEntityMapper.toEntity(c);
+        Long generatedId = cyclistDao.save(cyclistToCreate);
+        cyclistToCreate.setId(generatedId);
+        return cyclistEntityToCyclistResponseDTOMapper.entityToDto(cyclistToCreate);
     }
 
     @Override

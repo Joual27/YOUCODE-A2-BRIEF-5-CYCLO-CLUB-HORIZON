@@ -10,7 +10,7 @@ public interface CyclistServiceI {
 
     List<CyclistResponseDTO> getAllCyclists();
     Cyclist getCyclistById(Long id);
-    Cyclist save(CreateCyclistDTO c);
+    CyclistResponseDTO save(CreateCyclistDTO c);
     Cyclist update(Cyclist c);
     Cyclist deleteById(Long id);
     List<Cyclist> getOrderedCyclistListByName();

@@ -15,6 +15,9 @@ public class CreateCyclistDTO {
         this.teamId = teamId;
     }
 
+    public CreateCyclistDTO(){}
+
+
     public String getFirstName() {
         return firstName;
     }

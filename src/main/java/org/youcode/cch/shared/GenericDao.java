@@ -22,16 +22,19 @@ public abstract class GenericDao<T> implements GenericDaoI<T> {
     }
 
     @Override
-    public void save(T entity) {
+    public Long save(T entity) {
         Transaction transaction = null;
+        Long id = null;
         try (Session session = openSession()) {
             transaction = session.beginTransaction();
             session.persist(entity);
             transaction.commit();
+            id = (Long) session.getIdentifier(entity);
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }
+        return id;
     }
 
     @Override

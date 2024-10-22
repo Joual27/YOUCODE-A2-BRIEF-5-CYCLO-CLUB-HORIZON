@@ -9,23 +9,23 @@
         <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
     </bean>
 
-    <bean id="cyclistDao" class="org.youcode.cyclist.CyclistDao">
+    <bean id="cyclistDao" class="org.youcode.cch.cyclist.CyclistDao">
         <constructor-arg ref="sessionFactory" />
     </bean>
 
-    <bean id="competitionDao" class="org.youcode.competition.CompetitionDao">
+    <bean id="competitionDao" class="org.youcode.cch.competition.CompetitionDao">
         <constructor-arg ref="sessionFactory" />
     </bean>
 
-    <bean id="generalResultDao" class="org.youcode.generalResult.GeneralResultDao">
+    <bean id="generalResultDao" class="org.youcode.cch.generalResult.GeneralResultDao">
         <constructor-arg ref="sessionFactory" />
     </bean>
 
-    <bean id="resultDao" class="org.youcode.result.ResultDao">
+    <bean id="resultDao" class="org.youcode.cch.result.ResultDao">
         <constructor-arg ref="sessionFactory" />
     </bean>
 
-    <bean id="stageDao" class="org.youcode.stage.StageDao">
+    <bean id="stageDao" class="org.youcode.cch.stage.StageDao">
         <constructor-arg ref="sessionFactory" />
     </bean>
 </beans>

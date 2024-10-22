@@ -30,7 +30,13 @@ public class CyclistController {
 
     @PostMapping("/create")
     public ResponseEntity<CyclistResponseDTO> createCyclist(@RequestBody CreateCyclistDTO createCyclistDTO){
-
+        try{
+            CyclistResponseDTO res = cyclistService.save(createCyclistDTO);
+            return new ResponseEntity<>(res,HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

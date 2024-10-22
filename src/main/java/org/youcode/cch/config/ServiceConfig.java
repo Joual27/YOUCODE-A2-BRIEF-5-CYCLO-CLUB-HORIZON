@@ -10,6 +10,7 @@ import org.youcode.cch.cyclist.CyclistService;
 import org.youcode.cch.cyclist.interfaces.CyclistDaoI;
 import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
 
+import org.youcode.cch.cyclist.mappers.CreateCyclistDTOToCyclistEntityMapper;
 import org.youcode.cch.cyclist.mappers.CyclistEntityToCyclistResponseDTOMapper;
 import org.youcode.cch.result.ResultService;
 import org.youcode.cch.result.interfaces.ResultDaoI;
@@ -17,6 +18,9 @@ import org.youcode.cch.result.interfaces.ResultServiceI;
 import org.youcode.cch.stage.StageService;
 import org.youcode.cch.stage.interfaces.StageDaoI;
 import org.youcode.cch.stage.interfaces.StageServiceI;
+import org.youcode.cch.team.TeamService;
+import org.youcode.cch.team.interfaces.TeamDaoI;
+import org.youcode.cch.team.interfaces.TeamServiceI;
 
 @Configuration
 public class ServiceConfig {
@@ -27,8 +31,8 @@ public class ServiceConfig {
     }
 
     @Bean
-    public CyclistServiceI cyclistService(CyclistDaoI cyclistDao , CyclistEntityToCyclistResponseDTOMapper cyclistEntityToCyclistResponseDTOMapper){
-        return new CyclistService(cyclistDao , cyclistEntityToCyclistResponseDTOMapper);
+    public CyclistServiceI cyclistService(CyclistDaoI cyclistDao , CyclistEntityToCyclistResponseDTOMapper cyclistEntityToCyclistResponseDTOMapper , CreateCyclistDTOToCyclistEntityMapper createCyclistDTOToCyclistEntityMapper){
+        return new CyclistService(cyclistDao , cyclistEntityToCyclistResponseDTOMapper,createCyclistDTOToCyclistEntityMapper);
     }
 
 //    @Bean
@@ -44,6 +48,11 @@ public class ServiceConfig {
     @Bean
     public StageServiceI stageService(StageDaoI stageDao){
         return new StageService(stageDao);
+    }
+
+    @Bean
+    public TeamServiceI teamService(TeamDaoI teamDao){
+        return new TeamService(teamDao);
     }
 
 }

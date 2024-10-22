@@ -28,4 +28,8 @@
     <bean id="stageDao" class="org.youcode.cch.stage.StageDao">
         <constructor-arg ref="sessionFactory" />
     </bean>
+
+    <bean id="teamDao" class="org.youcode.cch.team.TeamDao">
+        <constructor-arg ref="sessionFactory" />
+    </bean>
 </beans>

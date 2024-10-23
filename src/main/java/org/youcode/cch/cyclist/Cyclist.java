@@ -2,6 +2,8 @@ package org.youcode.cch.cyclist;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.youcode.cch.generalResult.GeneralResult;
 import org.youcode.cch.result.Result;
 import org.youcode.cch.shared.BaseEntity;
@@ -12,15 +14,21 @@ import java.util.List;
 @Entity
 public class Cyclist extends BaseEntity {
 
-
+    @NotNull
+    @Size(min = 2, max = 50)
     @Column(name = "FIRST_NAME")
-    private String firstName ;
+    private String firstName;
 
+    @NotNull
+    @Size(min = 2, max = 50)
     @Column(name = "LAST_NAME")
-    private String lastName ;
+    private String lastName;
 
+    @NotNull
+    @Size(min = 2, max = 50)
     @Column(name = "NATIONALITY")
     private String nationality;
+
 
     @Column(name = "AGE")
     private int age;

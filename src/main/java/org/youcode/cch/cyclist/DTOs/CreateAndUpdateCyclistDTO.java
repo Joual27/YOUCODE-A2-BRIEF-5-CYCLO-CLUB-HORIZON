@@ -1,13 +1,13 @@
 package org.youcode.cch.cyclist.DTOs;
 
-public class CreateCyclistDTO {
+public class CreateAndUpdateCyclistDTO {
     private String firstName;
     private String lastName;
     private String nationality;
     private int age ;
     private Long teamId;
 
-    public CreateCyclistDTO(String firstName, String lastName , String nationality , int age , Long teamId){
+    public CreateAndUpdateCyclistDTO(String firstName, String lastName , String nationality , int age , Long teamId){
         this.firstName = firstName;
         this.lastName = lastName;
         this.nationality = nationality;
@@ -15,7 +15,7 @@ public class CreateCyclistDTO {
         this.teamId = teamId;
     }
 
-    public CreateCyclistDTO(){}
+    public CreateAndUpdateCyclistDTO(){}
 
 
     public String getFirstName() {

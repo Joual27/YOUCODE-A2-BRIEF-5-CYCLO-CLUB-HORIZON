@@ -10,7 +10,7 @@ public class CyclistResponseDTO {
     private int age;
     private EmbeddedTeamDTO team;
 
-    public CyclistResponseDTO(Long id,String firstName , String lastName , String nationality , int age , EmbeddedTeamDTO team){
+    public CyclistResponseDTO(Long id, String firstName , String lastName , String nationality , int age , EmbeddedTeamDTO team){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

@@ -1,6 +1,7 @@
 package org.youcode.cch.generalResult;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.youcode.cch.competition.Competition;
 import org.youcode.cch.cyclist.Cyclist;
 import org.youcode.cch.generalResult.embeddables.GeneralResultKey;
@@ -14,9 +15,11 @@ public class GeneralResult{
     @EmbeddedId
     private GeneralResultKey id;
 
+    @NotNull
     @Column(name = "OVERALL_TIME")
     private Duration overallTime;
 
+    @NotNull
     @Column(name = "OVERALL_RANK")
     private int overallRank;
 

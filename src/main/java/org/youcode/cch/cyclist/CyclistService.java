@@ -1,6 +1,6 @@
 package org.youcode.cch.cyclist;
 
-import org.youcode.cch.cyclist.DTOs.CreateCyclistDTO;
+import org.youcode.cch.cyclist.DTOs.CreateAndUpdateCyclistDTO;
 import org.youcode.cch.cyclist.DTOs.CyclistResponseDTO;
 import org.youcode.cch.cyclist.interfaces.CyclistDaoI;
 import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
@@ -37,7 +37,7 @@ public class CyclistService implements CyclistServiceI {
     }
 
     @Override
-    public CyclistResponseDTO save(CreateCyclistDTO c){
+    public CyclistResponseDTO save(CreateAndUpdateCyclistDTO c){
         Cyclist cyclistToCreate = createCyclistDTOToCyclistEntityMapper.toEntity(c);
         Long generatedId = cyclistDao.save(cyclistToCreate);
         cyclistToCreate.setId(generatedId);
@@ -45,15 +45,18 @@ public class CyclistService implements CyclistServiceI {
     }
 
     @Override
-    public Cyclist update(Cyclist c){
+    public CyclistResponseDTO update(Long id , CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO){
+        Cyclist c = createCyclistDTOToCyclistEntityMapper.toEntity(createAndUpdateCyclistDTO);
+        c.setId(id);
         cyclistDao.update(c);
-        return c;
+        return cyclistEntityToCyclistResponseDTOMapper.entityToDto(c);
     }
+
     @Override
-    public Cyclist deleteById(Long id){
+    public CyclistResponseDTO deleteById(Long id){
         Cyclist cyclistToDelete = getCyclistById(id);
         cyclistDao.deleteById(id);
-        return cyclistToDelete;
+        return cyclistEntityToCyclistResponseDTOMapper.entityToDto(cyclistToDelete);
     }
 
     @Override

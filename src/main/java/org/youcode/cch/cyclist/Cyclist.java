@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 public class Cyclist extends BaseEntity {
 
+
     @Column(name = "FIRST_NAME")
     private String firstName ;
 

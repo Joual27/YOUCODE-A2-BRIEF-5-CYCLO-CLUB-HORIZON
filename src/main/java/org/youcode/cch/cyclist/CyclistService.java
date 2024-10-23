@@ -31,32 +31,35 @@ public class CyclistService implements CyclistServiceI {
     }
 
     @Override
-    public Cyclist getCyclistById(Long id){
+    public CyclistResponseDTO getCyclistById(Long id){
         Optional<Cyclist> cyclist = cyclistDao.findById(id);
-        return cyclist.orElse(null);
+        if (cyclist.isPresent()){
+            return cyclistEntityToCyclistResponseDTOMapper.entityToDto(cyclist.get());
+        }
+        return null;
     }
 
     @Override
     public CyclistResponseDTO save(CreateAndUpdateCyclistDTO c){
-        Cyclist cyclistToCreate = createCyclistDTOToCyclistEntityMapper.toEntity(c);
+        Cyclist cyclistToCreate = convertFromCreateOrUpdateDTOToEntity(c);
         Long generatedId = cyclistDao.save(cyclistToCreate);
         cyclistToCreate.setId(generatedId);
-        return cyclistEntityToCyclistResponseDTOMapper.entityToDto(cyclistToCreate);
+        return convertToResponseDTO(cyclistToCreate);
     }
 
     @Override
     public CyclistResponseDTO update(Long id , CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO){
-        Cyclist c = createCyclistDTOToCyclistEntityMapper.toEntity(createAndUpdateCyclistDTO);
+        Cyclist c = convertFromCreateOrUpdateDTOToEntity(createAndUpdateCyclistDTO);
         c.setId(id);
         cyclistDao.update(c);
-        return cyclistEntityToCyclistResponseDTOMapper.entityToDto(c);
+        return convertToResponseDTO(c);
     }
 
     @Override
     public CyclistResponseDTO deleteById(Long id){
-        Cyclist cyclistToDelete = getCyclistById(id);
+        CyclistResponseDTO cyclistToDelete = getCyclistById(id);
         cyclistDao.deleteById(id);
-        return cyclistEntityToCyclistResponseDTOMapper.entityToDto(cyclistToDelete);
+        return cyclistToDelete;
     }
 
     @Override
@@ -76,5 +79,13 @@ public class CyclistService implements CyclistServiceI {
 
     private CyclistResponseDTO convertToResponseDTO(Cyclist c){
         return cyclistEntityToCyclistResponseDTOMapper.entityToDto(c);
+    }
+
+    private Cyclist convertFromCreateOrUpdateDTOToEntity(CreateAndUpdateCyclistDTO c){
+        return createCyclistDTOToCyclistEntityMapper.toEntity(c);
+    }
+
+    private Cyclist convertFromResponseDTOToEntity(CyclistResponseDTO c){
+        return cyclistEntityToCyclistResponseDTOMapper.toEntity(c);
     }
 }

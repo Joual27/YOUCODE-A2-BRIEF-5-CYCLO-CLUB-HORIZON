@@ -59,4 +59,15 @@ public class CyclistController {
             return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CyclistResponseDTO> getCyclistById(@PathVariable("id") Long id){
+         try{
+             CyclistResponseDTO res = cyclistService.getCyclistById(id);
+             return new ResponseEntity<>(res , HttpStatus.OK);
+         } catch (Exception e) {
+             return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
+         }
+    }
+
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public interface CyclistServiceI {
 
     List<CyclistResponseDTO> getAllCyclists();
-    Cyclist getCyclistById(Long id);
+    CyclistResponseDTO getCyclistById(Long id);
     CyclistResponseDTO save(CreateAndUpdateCyclistDTO c);
     CyclistResponseDTO update(Long id , CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO);
     CyclistResponseDTO deleteById(Long id);

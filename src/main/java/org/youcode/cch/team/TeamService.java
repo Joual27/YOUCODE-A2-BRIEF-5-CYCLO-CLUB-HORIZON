@@ -1,7 +1,10 @@
 package org.youcode.cch.team;
 
+import org.youcode.cch.exceptions.EntityNotFoundException;
 import org.youcode.cch.team.interfaces.TeamDaoI;
 import org.youcode.cch.team.interfaces.TeamServiceI;
+
+import java.util.Optional;
 
 public class TeamService implements TeamServiceI {
 
@@ -12,7 +15,11 @@ public class TeamService implements TeamServiceI {
     }
 
     public Team getTeamById(Long id){
-        return teamDao.findById(id).orElse(null);
+        Optional<Team> team = teamDao.findById(id);
+        if (team.isEmpty()){
+            throw new EntityNotFoundException("No Team found with given ID");
+        }
+        return team.get();
     }
 
 }

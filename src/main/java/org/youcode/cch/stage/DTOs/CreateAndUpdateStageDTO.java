@@ -1,10 +1,25 @@
 package org.youcode.cch.stage.DTOs;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class CreateAndUpdateStageDTO {
-    private int number ;
+    @NotNull(message = "Number Field is mandatory")
+    private Integer number;
+
+    @NotBlank(message = "Start location Field is mandatory")
+    @Size(min = 2, max = 50)
     private String startLocation;
+
+    @NotBlank(message = "End location Field is mandatory")
+    @Size(min = 2, max = 50)
     private String endLocation;
+
+    @NotBlank(message = "Type Field is  mandatory")
     private String type;
+
+    @NotNull
     private Long competitionId;
 
     public CreateAndUpdateStageDTO(){}

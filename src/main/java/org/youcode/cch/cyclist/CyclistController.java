@@ -1,5 +1,6 @@
 package org.youcode.cch.cyclist;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,45 +30,27 @@ public class CyclistController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<CyclistResponseDTO> createCyclist(@RequestBody CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO){
-        try{
-            CyclistResponseDTO res = cyclistService.save(createAndUpdateCyclistDTO);
-            return new ResponseEntity<>(res,HttpStatus.OK);
-        }
-        catch (Exception e){
-            return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<CyclistResponseDTO> createCyclist(@Valid @RequestBody CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO){
+        CyclistResponseDTO res = cyclistService.save(createAndUpdateCyclistDTO);
+        return new ResponseEntity<>(res,HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<CyclistResponseDTO> updateCyclist(@PathVariable("id") Long id, @RequestBody CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO){
-        try{
-            CyclistResponseDTO res = cyclistService.update(id , createAndUpdateCyclistDTO);
-            return new ResponseEntity<>(res, HttpStatus.OK);
-        }
-        catch(Exception e){
-            return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<CyclistResponseDTO> updateCyclist(@PathVariable("id") Long id, @Valid @RequestBody CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO){
+        CyclistResponseDTO res = cyclistService.update(id , createAndUpdateCyclistDTO);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<CyclistResponseDTO> updateCyclist(@PathVariable("id") Long id){
-        try{
-            CyclistResponseDTO res = cyclistService.deleteById(id);
-            return new ResponseEntity<>(res , HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        CyclistResponseDTO res = cyclistService.deleteById(id);
+        return new ResponseEntity<>(res , HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CyclistResponseDTO> getCyclistById(@PathVariable("id") Long id){
-         try{
-             CyclistResponseDTO res = cyclistService.getCyclistById(id);
-             return new ResponseEntity<>(res , HttpStatus.OK);
-         } catch (Exception e) {
-             return new ResponseEntity<>(null , HttpStatus.INTERNAL_SERVER_ERROR);
-         }
+        CyclistResponseDTO res = cyclistService.getCyclistById(id);
+        return new ResponseEntity<>(res , HttpStatus.OK);
     }
 
 }

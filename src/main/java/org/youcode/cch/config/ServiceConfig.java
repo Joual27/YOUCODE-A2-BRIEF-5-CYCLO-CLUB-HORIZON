@@ -18,6 +18,8 @@ import org.youcode.cch.result.interfaces.ResultServiceI;
 import org.youcode.cch.stage.StageService;
 import org.youcode.cch.stage.interfaces.StageDaoI;
 import org.youcode.cch.stage.interfaces.StageServiceI;
+import org.youcode.cch.stage.mappers.CreateAndUpdateStageDTOToEntityMapper;
+import org.youcode.cch.stage.mappers.StageEntityToStageResponseDTOMapper;
 import org.youcode.cch.team.TeamService;
 import org.youcode.cch.team.interfaces.TeamDaoI;
 import org.youcode.cch.team.interfaces.TeamServiceI;
@@ -46,8 +48,8 @@ public class ServiceConfig {
     }
 
     @Bean
-    public StageServiceI stageService(StageDaoI stageDao){
-        return new StageService(stageDao);
+    public StageServiceI stageService(StageDaoI stageDao , CreateAndUpdateStageDTOToEntityMapper createAndUpdateStageDTOToEntityMapper , StageEntityToStageResponseDTOMapper stageEntityToStageResponseDTOMapper){
+        return new StageService(stageDao , createAndUpdateStageDTOToEntityMapper , stageEntityToStageResponseDTOMapper);
     }
 
     @Bean

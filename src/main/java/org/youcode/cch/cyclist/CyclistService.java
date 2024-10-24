@@ -6,6 +6,7 @@ import org.youcode.cch.cyclist.interfaces.CyclistDaoI;
 import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
 import org.youcode.cch.cyclist.mappers.CreateCyclistDTOToCyclistEntityMapper;
 import org.youcode.cch.cyclist.mappers.CyclistEntityToCyclistResponseDTOMapper;
+import org.youcode.cch.exceptions.EntityNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,10 +34,10 @@ public class CyclistService implements CyclistServiceI {
     @Override
     public CyclistResponseDTO getCyclistById(Long id){
         Optional<Cyclist> cyclist = cyclistDao.findById(id);
-        if (cyclist.isPresent()){
-            return cyclistEntityToCyclistResponseDTOMapper.entityToDto(cyclist.get());
+        if (cyclist.isEmpty()){
+            throw new EntityNotFoundException("No Cyclist Is available with the Given ID");
         }
-        return null;
+        return cyclistEntityToCyclistResponseDTOMapper.entityToDto(cyclist.get());
     }
 
     @Override
@@ -50,9 +51,14 @@ public class CyclistService implements CyclistServiceI {
     @Override
     public CyclistResponseDTO update(Long id , CreateAndUpdateCyclistDTO createAndUpdateCyclistDTO){
         Cyclist c = convertFromCreateOrUpdateDTOToEntity(createAndUpdateCyclistDTO);
-        c.setId(id);
-        cyclistDao.update(c);
-        return convertToResponseDTO(c);
+        if (cyclistDao.findById(id).isEmpty()){
+            throw new EntityNotFoundException("No cyclist found with given ID");
+        }
+        else{
+            c.setId(id);
+            cyclistDao.update(c);
+            return convertToResponseDTO(c);
+        }
     }
 
     @Override

@@ -1,10 +1,29 @@
 package org.youcode.cch.cyclist.DTOs;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class CreateAndUpdateCyclistDTO {
+
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String firstName;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String lastName;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String nationality;
+
+    @NotNull()
+    @Min(15)
     private int age ;
+
+    @NotNull
     private Long teamId;
 
     public CreateAndUpdateCyclistDTO(String firstName, String lastName , String nationality , int age , Long teamId){

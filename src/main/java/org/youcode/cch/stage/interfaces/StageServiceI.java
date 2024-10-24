@@ -7,9 +7,9 @@ import org.youcode.cch.stage.Stage;
 import java.util.List;
 
 public interface StageServiceI {
-    List<Stage> getAllStages();
-    Stage getStageById(Long id);
+    List<StageResponseDTO> getAllStages();
+    StageResponseDTO getStageById(Long id);
     StageResponseDTO save(CreateAndUpdateStageDTO c);
-    Stage update(Stage c);
-    Stage deleteById(Long id);
+    StageResponseDTO update(Long id , CreateAndUpdateStageDTO c);
+    StageResponseDTO deleteById(Long id);
 }

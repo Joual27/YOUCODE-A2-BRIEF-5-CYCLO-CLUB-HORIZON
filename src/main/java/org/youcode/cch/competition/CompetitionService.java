@@ -2,6 +2,7 @@ package org.youcode.cch.competition;
 
 import org.youcode.cch.competition.interfaces.CompetitionDaoI;
 import org.youcode.cch.competition.interfaces.CompetitionServiceI;
+import org.youcode.cch.exceptions.EntityNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,10 @@ public class CompetitionService implements CompetitionServiceI {
 
     public Competition getCompetitionEntityById(Long id){
         Optional<Competition> competition = competitionDao.findById(id);
-        return competition.orElse(null);
+        if (competition.isEmpty()){
+            throw new EntityNotFoundException("No competition found with the given ID !");
+        }
+        return competition.get();
     }
     public Competition save(Competition c){
         competitionDao.save(c);

@@ -14,6 +14,8 @@ public class ResultKey implements Serializable {
     @Column(name = "CYCLIST_ID")
     private Long cyclistId;
 
+    public ResultKey(){}
+
     public Long getStageId() {
         return stageId;
     }

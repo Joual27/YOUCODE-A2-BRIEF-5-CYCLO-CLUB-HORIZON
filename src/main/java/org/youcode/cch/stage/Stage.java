@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.youcode.cch.competition.Competition;
 import org.youcode.cch.result.Result;
 import org.youcode.cch.shared.BaseEntity;
@@ -12,15 +14,25 @@ import java.util.List;
 
 @Entity
 public class Stage extends BaseEntity {
+
+    @NotNull
     @Column(name = "NUMBER")
     private int number;
 
+
+    @NotNull
+    @Size(min = 2 , max = 50)
     @Column(name = "START_LOCATION")
     private String startLocation;
 
+
+    @NotNull
+    @Size(min = 2 , max = 50)
     @Column(name = "END_LOCATION")
     private String endLocation;
 
+
+    @NotNull
     @Column(name = "TYPE")
     private String type;
 

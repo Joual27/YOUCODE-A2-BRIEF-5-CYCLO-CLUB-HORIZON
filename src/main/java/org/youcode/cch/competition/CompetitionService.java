@@ -16,7 +16,8 @@ public class CompetitionService implements CompetitionServiceI {
     public List<Competition> getAllCompetitions(){
         return competitionDao.findAll();
     }
-    public Competition getCompetitionById(Long id){
+
+    public Competition getCompetitionEntityById(Long id){
         Optional<Competition> competition = competitionDao.findById(id);
         return competition.orElse(null);
     }
@@ -29,7 +30,7 @@ public class CompetitionService implements CompetitionServiceI {
         return c;
     }
     public Competition deleteById(Long id){
-        Competition c = getCompetitionById(id);
+        Competition c = getCompetitionEntityById(id);
         if (c != null){
             competitionDao.deleteById(id);
         }

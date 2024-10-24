@@ -17,7 +17,6 @@ public abstract class CreateCyclistDTOToCyclistEntityMapper{
     @Mapping(target = "team" , expression = "java(getTeamById(c.getTeamId()))")
     public abstract Cyclist toEntity(CreateAndUpdateCyclistDTO c);
 
-    public abstract CreateAndUpdateCyclistDTO entityToDto(Cyclist c);
 
     protected Team getTeamById(Long id){
         return teamService.getTeamById(id);

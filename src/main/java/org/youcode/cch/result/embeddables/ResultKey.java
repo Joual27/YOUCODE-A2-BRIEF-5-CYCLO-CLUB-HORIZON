@@ -16,6 +16,11 @@ public class ResultKey implements Serializable {
 
     public ResultKey(){}
 
+    public ResultKey(Long stageId , Long cyclistId){
+        this.cyclistId = cyclistId;
+        this.stageId = stageId;
+    }
+
     public Long getStageId() {
         return stageId;
     }

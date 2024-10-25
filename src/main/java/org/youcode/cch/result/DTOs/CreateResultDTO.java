@@ -7,18 +7,15 @@ import java.time.Duration;
 public class CreateResultDTO {
     @NotNull
     private Long stageId;
-
     @NotNull
     private Long cyclistId;
-
-    private Duration duration;
-
+    private Duration time;
 
     public CreateResultDTO(){}
-    public CreateResultDTO(Long stageId , Long cyclistId , Duration duration){
+    public CreateResultDTO(Long stageId , Long cyclistId , Duration time){
         this.cyclistId = cyclistId;
         this.stageId = stageId;
-        this.duration = duration;
+        this.time = time;
     }
 
     public Long getStageId() {
@@ -26,7 +23,8 @@ public class CreateResultDTO {
     }
     public Long getCyclistId() {
         return cyclistId;
-    }public Duration getDuration() {
-        return duration;
+    }
+    public Duration getTime() {
+        return time;
     }
 }

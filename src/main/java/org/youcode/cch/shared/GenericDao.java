@@ -8,7 +8,7 @@ import org.youcode.cch.shared.interfaces.GenericDaoI;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class GenericDao<T> implements GenericDaoI<T> {
+public abstract class GenericDao<T,ID> implements GenericDaoI<T,ID> {
     private final Class<T> entityClass;
     private final SessionFactory sessionFactory;
 
@@ -22,20 +22,23 @@ public abstract class GenericDao<T> implements GenericDaoI<T> {
     }
 
     @Override
-    public Long save(T entity) {
+    public T save(T entity) {
+        T e = null ;
         Transaction transaction = null;
-        Long id = null;
         try (Session session = openSession()) {
             transaction = session.beginTransaction();
-            session.persist(entity);
+            e = session.merge(entity);
             transaction.commit();
-            id = (Long) session.getIdentifier(entity);
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+        } catch (Exception ex) {
+            if (transaction != null) {
+                transaction.rollback();
+                System.out.println("Transaction rolled back due to: " + ex.getMessage());
+            }
+            ex.printStackTrace();
         }
-        return id;
+        return e;
     }
+
 
     @Override
     public void update(T entity) {
@@ -61,7 +64,7 @@ public abstract class GenericDao<T> implements GenericDaoI<T> {
     }
 
     @Override
-    public Optional<T> findById(Long id) {
+    public Optional<T> findById(ID id) {
         try (Session session = openSession()) {
             return Optional.ofNullable(session.get(entityClass, id));
         } catch (Exception e) {
@@ -84,7 +87,7 @@ public abstract class GenericDao<T> implements GenericDaoI<T> {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(ID id) {
         Optional<T> entity = findById(id);
         entity.ifPresent(this::delete);
     }

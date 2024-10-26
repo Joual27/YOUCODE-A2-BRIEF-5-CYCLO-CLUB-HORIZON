@@ -10,16 +10,15 @@ public class ResultResponseDTO {
     private ResultKey id;
     private Duration time;
     private int rank;
-    private EmbeddedStageDTO stageDTO;
-    private EmbeddedCyclistDTO cyclistDTO;
+    private EmbeddedStageDTO stage;
+    private EmbeddedCyclistDTO cyclist;
 
-    public ResultResponseDTO(){}
-    public ResultResponseDTO(ResultKey id, Duration time , int rank , EmbeddedStageDTO stageDTO , EmbeddedCyclistDTO cyclistDTO){
+    public ResultResponseDTO(ResultKey id, Duration time , int rank , EmbeddedStageDTO stage , EmbeddedCyclistDTO cyclist){
         this.id = id;
         this.time = time;
         this.rank = rank ;
-        this.stageDTO = stageDTO;
-        this.cyclistDTO = cyclistDTO;
+        this.stage = stage;
+        this.cyclist = cyclist;
     }
 
     public int getRank() {
@@ -34,11 +33,11 @@ public class ResultResponseDTO {
         return id;
     }
 
-    public EmbeddedCyclistDTO getCyclistDTO() {
-        return cyclistDTO;
+    public EmbeddedCyclistDTO getCyclist() {
+        return cyclist;
     }
 
-    public EmbeddedStageDTO getStageDTO() {
-        return stageDTO;
+    public EmbeddedStageDTO getStage() {
+        return stage;
     }
 }

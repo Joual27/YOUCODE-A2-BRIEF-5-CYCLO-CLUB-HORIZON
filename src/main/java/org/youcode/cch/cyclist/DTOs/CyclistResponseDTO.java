@@ -18,6 +18,7 @@ public class CyclistResponseDTO {
         this.age = age;
         this.team = team;
     }
+
     public Long getId(){
         return id;
     }

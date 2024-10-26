@@ -11,12 +11,14 @@ public class CreateResultDTO {
     private Long cyclistId;
     private Duration time;
 
-    public CreateResultDTO(){}
     public CreateResultDTO(Long stageId , Long cyclistId , Duration time){
         this.cyclistId = cyclistId;
         this.stageId = stageId;
         this.time = time;
     }
+
+    public CreateResultDTO(){}
+
 
     public Long getStageId() {
         return stageId;

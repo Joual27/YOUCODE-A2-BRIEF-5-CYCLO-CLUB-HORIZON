@@ -1,6 +1,9 @@
 package org.youcode.cch.competition.DTOs;
 
+import org.youcode.cch.stage.DTOs.EmbeddedStageDTO;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class CompetitionResponseDTO {
     private Long id;
@@ -8,15 +11,17 @@ public class CompetitionResponseDTO {
     private int year;
     private LocalDate startDate;
     private LocalDate endDate;
-    private int numberOfStages;
+    private List<EmbeddedStageDTO> stages;
 
-    public CompetitionResponseDTO(Long id , String name , int year , LocalDate startDate , LocalDate endDate , int numberOfStages){
+
+    public CompetitionResponseDTO(Long id , String name , int year , LocalDate startDate , LocalDate endDate , int numberOfStages , List<EmbeddedStageDTO> stages){
         this.id = id;
         this.name = name;
         this.year = year;
         this.startDate = startDate ;
         this.endDate = endDate ;
         this.numberOfStages = numberOfStages;
+        this.stages = stages;
     }
 
     public Long getId(){
@@ -39,5 +44,9 @@ public class CompetitionResponseDTO {
 
     public int getNumberOfStages() {
         return numberOfStages;
+    }
+
+    public List<EmbeddedStageDTO> getStages() {
+        return stages;
     }
 }

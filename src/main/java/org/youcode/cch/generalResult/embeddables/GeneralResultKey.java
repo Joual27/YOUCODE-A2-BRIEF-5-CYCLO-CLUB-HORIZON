@@ -17,6 +17,10 @@ public class GeneralResultKey implements Serializable {
     private Long competitionId;
 
     public GeneralResultKey(){}
+    public GeneralResultKey(Long competitionId , Long cyclistId){
+        this.competitionId = competitionId;
+        this.cyclistId = cyclistId;
+    }
 
     public Long getCyclistId() {
         return cyclistId;

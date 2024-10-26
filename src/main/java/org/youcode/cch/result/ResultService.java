@@ -61,8 +61,6 @@ public class ResultService implements ResultServiceI {
         Result resultToCreate = createResultDTOToResultEntityMapper.toEntity(result);
         resultToCreate.setRank(assignRankToResult(resultToCreate));
         Result createdRes = resultDao.save(resultToCreate);
-        System.out.println(createdRes.getCyclist().getFirstName());
-        System.out.println(createdRes.getStage().getNumber());
         return resultEntityToResultResponseDTOMapper.entityToDto(createdRes);
     }
 

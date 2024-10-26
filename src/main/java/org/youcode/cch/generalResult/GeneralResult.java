@@ -11,7 +11,6 @@ import java.time.Duration;
 
 @Entity
 public class GeneralResult{
-
     @EmbeddedId
     private GeneralResultKey id;
 

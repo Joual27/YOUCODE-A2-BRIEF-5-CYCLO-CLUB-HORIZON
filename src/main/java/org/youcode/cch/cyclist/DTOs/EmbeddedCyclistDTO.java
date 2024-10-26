@@ -5,7 +5,7 @@ public class EmbeddedCyclistDTO {
     private String lastName;
     private String nationality;
 
-    public EmbeddedCyclistDTO(){}
+
     public EmbeddedCyclistDTO(String firstName , String lastName ,String nationality){
         this.firstName = firstName;
         this.lastName = lastName;

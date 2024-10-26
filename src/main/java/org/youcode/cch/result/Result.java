@@ -8,18 +8,18 @@ import org.youcode.cch.stage.Stage;
 import java.time.Duration;
 
 @Entity
-public class Result {
+public class    Result {
     @EmbeddedId
     private ResultKey id;
     private Duration time;
     private int rank;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("stageId")
     @JoinColumn(name = "STAGE_ID")
     private Stage stage;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("cyclistId")
     @JoinColumn(name = "CYCLIST_ID")
     private Cyclist cyclist;

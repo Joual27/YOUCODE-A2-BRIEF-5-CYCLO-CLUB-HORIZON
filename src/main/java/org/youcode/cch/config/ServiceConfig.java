@@ -12,9 +12,12 @@ import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
 
 import org.youcode.cch.cyclist.mappers.CreateCyclistDTOToCyclistEntityMapper;
 import org.youcode.cch.cyclist.mappers.CyclistEntityToCyclistResponseDTOMapper;
+//import org.youcode.cch.result.ResultService;
 import org.youcode.cch.result.ResultService;
 import org.youcode.cch.result.interfaces.ResultDaoI;
 import org.youcode.cch.result.interfaces.ResultServiceI;
+import org.youcode.cch.result.mappers.CreateResultDTOToResultEntityMapper;
+import org.youcode.cch.result.mappers.ResultEntityToResultResponseDTOMapper;
 import org.youcode.cch.stage.StageService;
 import org.youcode.cch.stage.interfaces.StageDaoI;
 import org.youcode.cch.stage.interfaces.StageServiceI;
@@ -43,8 +46,8 @@ public class ServiceConfig {
 //    }
 
     @Bean
-    public ResultServiceI resultService(ResultDaoI resultDao){
-        return new ResultService(resultDao);
+    public ResultServiceI resultService(ResultDaoI resultDao , CreateResultDTOToResultEntityMapper createResultDTOToResultEntityMapper , StageDaoI stageDao , CyclistDaoI cyclistDao , ResultEntityToResultResponseDTOMapper resultEntityToResultResponseDTOMapper){
+        return new ResultService(resultDao,createResultDTOToResultEntityMapper,stageDao , cyclistDao , resultEntityToResultResponseDTOMapper);
     }
 
     @Bean

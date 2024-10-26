@@ -1,5 +1,7 @@
 package org.youcode.cch.competition;
 
+import org.youcode.cch.competition.DTOs.CompetitionResponseDTO;
+import org.youcode.cch.competition.DTOs.CreateAndUpdateCompetitionDTO;
 import org.youcode.cch.competition.interfaces.CompetitionDaoI;
 import org.youcode.cch.competition.interfaces.CompetitionServiceI;
 import org.youcode.cch.exceptions.EntityNotFoundException;
@@ -25,7 +27,7 @@ public class CompetitionService implements CompetitionServiceI {
         }
         return competition.get();
     }
-    public Competition save(Competition c){
+    public CompetitionResponseDTO save(CreateAndUpdateCompetitionDTO c){
         competitionDao.save(c);
         return c;
     }

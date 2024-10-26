@@ -43,8 +43,8 @@ public class CyclistService implements CyclistServiceI {
     @Override
     public CyclistResponseDTO save(CreateAndUpdateCyclistDTO c){
         Cyclist cyclistToCreate = convertFromCreateOrUpdateDTOToEntity(c);
-        Long generatedId = cyclistDao.save(cyclistToCreate);
-        cyclistToCreate.setId(generatedId);
+        Cyclist createdCyclist = cyclistDao.save(cyclistToCreate);
+        cyclistToCreate.setId(createdCyclist.getId());
         return convertToResponseDTO(cyclistToCreate);
     }
 

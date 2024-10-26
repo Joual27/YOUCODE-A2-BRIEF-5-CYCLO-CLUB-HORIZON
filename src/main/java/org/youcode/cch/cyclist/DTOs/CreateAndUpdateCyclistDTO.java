@@ -36,7 +36,6 @@ public class CreateAndUpdateCyclistDTO {
 
     public CreateAndUpdateCyclistDTO(){}
 
-
     public String getFirstName() {
         return firstName;
     }

@@ -39,8 +39,8 @@ public class StageService implements StageServiceI {
     }
     public StageResponseDTO save(CreateAndUpdateStageDTO c){
         Stage stageToCreate = convertFromCreateOrUpdateDTOToEntity(c);
-        Long id = stageDao.save(stageToCreate);
-        stageToCreate.setId(id);
+        Stage createdStage = stageDao.save(stageToCreate);
+        stageToCreate.setId(createdStage.getId());
         return convertToResponseDTO(stageToCreate);
     }
     public StageResponseDTO update(Long id ,CreateAndUpdateStageDTO c){

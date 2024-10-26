@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Repository
-public class CyclistDao extends GenericDao<Cyclist> implements CyclistDaoI {
+public class CyclistDao extends GenericDao<Cyclist , Long> implements CyclistDaoI {
 
     public CyclistDao(SessionFactory sessionFactory){
         super(Cyclist.class,sessionFactory);

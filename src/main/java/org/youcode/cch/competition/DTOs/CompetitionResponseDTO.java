@@ -11,6 +11,7 @@ public class CompetitionResponseDTO {
     private int year;
     private LocalDate startDate;
     private LocalDate endDate;
+    private int numberOfStages;
     private List<EmbeddedStageDTO> stages;
 
 

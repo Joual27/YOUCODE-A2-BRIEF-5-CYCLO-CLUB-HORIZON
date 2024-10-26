@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.youcode.cch.competition.CompetitionService;
 import org.youcode.cch.competition.interfaces.CompetitionDaoI;
 import org.youcode.cch.competition.interfaces.CompetitionServiceI;
+import org.youcode.cch.competition.mappers.CompetitionEntityToCompetitionResponseDTOMapper;
+import org.youcode.cch.competition.mappers.CreateAndUpdateCompetitionDTOToCompetitionEntityMapper;
 import org.youcode.cch.cyclist.CyclistService;
 import org.youcode.cch.cyclist.interfaces.CyclistDaoI;
 import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
@@ -31,8 +33,8 @@ import org.youcode.cch.team.interfaces.TeamServiceI;
 public class ServiceConfig {
 
     @Bean
-    public CompetitionServiceI competitionService(CompetitionDaoI competitionDao){
-        return new CompetitionService(competitionDao);
+    public CompetitionServiceI competitionService(CompetitionDaoI competitionDao , StageDaoI stageDao , CreateAndUpdateCompetitionDTOToCompetitionEntityMapper createAndUpdateCompetitionDTOToCompetitionEntityMapper , CompetitionEntityToCompetitionResponseDTOMapper competitionEntityToCompetitionResponseDTOMapper){
+        return new CompetitionService(competitionDao , stageDao ,createAndUpdateCompetitionDTOToCompetitionEntityMapper , competitionEntityToCompetitionResponseDTOMapper );
     }
 
     @Bean

@@ -7,9 +7,10 @@ import org.youcode.cch.competition.DTOs.CreateAndUpdateCompetitionDTO;
 import java.util.List;
 
 public interface CompetitionServiceI {
-    List<Competition> getAllCompetitions();
+    List<CompetitionResponseDTO> getAllCompetitions();
     Competition getCompetitionEntityById(Long id);
     CompetitionResponseDTO save(CreateAndUpdateCompetitionDTO c);
-Competition update(Competition c);
-Competition deleteById(Long id);
+    CompetitionResponseDTO update(CreateAndUpdateCompetitionDTO c , Long Id);
+    CompetitionResponseDTO getById(Long id);
+    CompetitionResponseDTO deleteById(Long id);
 }

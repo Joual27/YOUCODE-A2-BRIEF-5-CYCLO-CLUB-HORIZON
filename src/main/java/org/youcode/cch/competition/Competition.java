@@ -14,25 +14,16 @@ import java.util.List;
 
 @Entity
 public class Competition extends BaseEntity {
-    @NotNull
-    @NotBlank
-    @Size(min = 2, max = 100)
+
     @Column(name = "NAME")
     private String name;
 
-    @NotNull
-    @Min(2000)
-    @Max(2030)
-    @Size(min = 4 , max = 4)
     @Column(name = "YEAR")
     private int year;
 
-    @NotNull
-    @NotBlank
     @Column(name = "START_DATE")
     private LocalDate startDate;
 
-    @NotNull
     @Column(name = "END_DATE")
     private LocalDate endDate;
 

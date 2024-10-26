@@ -1,15 +1,30 @@
 package org.youcode.cch.competition.DTOs;
 
-import org.youcode.cch.stage.DTOs.EmbeddedStageDTO;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class CreateAndUpdateCompetitionDTO {
+
+    @NotNull
+    @Size(min = 2, max = 100)
     private String name;
+
+    @NotNull
+    @Min(2000)
+    @Max(2030)
     private int year;
+
+    @NotNull
     private LocalDate startDate;
+
+    @NotNull
     private LocalDate endDate;
+
+    @Min(3)
     private int numberOfStages;
 
     public CreateAndUpdateCompetitionDTO(){}

@@ -33,6 +33,8 @@ import org.youcode.cch.stage.mappers.StageEntityToStageResponseDTOMapper;
 import org.youcode.cch.team.TeamService;
 import org.youcode.cch.team.interfaces.TeamDaoI;
 import org.youcode.cch.team.interfaces.TeamServiceI;
+import org.youcode.cch.team.mappers.CreateAndUpdateTeamDTOToTeamEntityMapper;
+import org.youcode.cch.team.mappers.TeamEntityToTeamResponseDTOMapper;
 
 @Configuration
 public class ServiceConfig {
@@ -63,8 +65,8 @@ public class ServiceConfig {
     }
 
     @Bean
-    public TeamServiceI teamService(TeamDaoI teamDao){
-        return new TeamService(teamDao);
+    public TeamServiceI teamService(TeamDaoI teamDao , CreateAndUpdateTeamDTOToTeamEntityMapper createAndUpdateTeamDTOToTeamEntityMapper , TeamEntityToTeamResponseDTOMapper teamEntityToTeamResponseDTOMapper){
+        return new TeamService(teamDao , createAndUpdateTeamDTOToTeamEntityMapper , teamEntityToTeamResponseDTOMapper);
     }
 
 }

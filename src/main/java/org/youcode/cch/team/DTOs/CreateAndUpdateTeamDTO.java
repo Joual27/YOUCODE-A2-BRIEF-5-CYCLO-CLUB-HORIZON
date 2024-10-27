@@ -9,6 +9,7 @@ public class CreateAndUpdateTeamDTO {
     public CreateAndUpdateTeamDTO(String name){
         this.name = name;
     }
+    public CreateAndUpdateTeamDTO(){}
 
     public String getName() {
         return name;

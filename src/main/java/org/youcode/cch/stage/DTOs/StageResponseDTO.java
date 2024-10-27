@@ -9,15 +9,17 @@ public class StageResponseDTO {
     private String endLocation;
     private String type;
     private EmbeddedCompetitionDTO competition;
+    private boolean isCompleted;
 
 
-    public StageResponseDTO(Long id , int number , String startLocation , String endLocation , String type , Long competitionId , EmbeddedCompetitionDTO competition){
+    public StageResponseDTO(Long id , int number , String startLocation , String endLocation , String type , EmbeddedCompetitionDTO competition , boolean isCompleted){
         this.id = id;
         this.number = number;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
         this.type = type;
         this.competition = competition;
+        this.isCompleted = isCompleted;
     }
 
     public Long getId(){
@@ -42,5 +44,9 @@ public class StageResponseDTO {
 
     public EmbeddedCompetitionDTO getCompetition(){
         return competition;
+    }
+
+    public boolean isCompleted(){
+        return isCompleted;
     }
 }

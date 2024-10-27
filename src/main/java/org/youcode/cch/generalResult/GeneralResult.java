@@ -14,11 +14,9 @@ public class GeneralResult{
     @EmbeddedId
     private GeneralResultKey id;
 
-    @NotNull
     @Column(name = "OVERALL_TIME")
     private Duration overallTime;
 
-    @NotNull
     @Column(name = "OVERALL_RANK")
     private int overallRank;
 

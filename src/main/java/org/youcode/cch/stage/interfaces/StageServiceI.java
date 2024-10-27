@@ -12,4 +12,5 @@ public interface StageServiceI {
     StageResponseDTO save(CreateAndUpdateStageDTO c);
     StageResponseDTO update(Long id , CreateAndUpdateStageDTO c);
     StageResponseDTO deleteById(Long id);
+    StageResponseDTO markStageAsCompleted(Long id);
 }

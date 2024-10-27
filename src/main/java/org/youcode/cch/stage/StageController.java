@@ -51,5 +51,11 @@ public class StageController {
         return new ResponseEntity<>(res , HttpStatus.OK);
     }
 
+    @GetMapping("/mark-as-completed/{id}")
+    public ResponseEntity<StageResponseDTO> markStageAsCompleted(@PathVariable("id") Long id){
+        StageResponseDTO res = stageService.markStageAsCompleted(id);
+        return new ResponseEntity<>(res , HttpStatus.OK);
+    }
+
 
 }

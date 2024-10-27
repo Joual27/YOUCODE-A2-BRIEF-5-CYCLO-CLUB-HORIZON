@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Team extends BaseEntity {
 
-    @Size(min = 2, max = 50 )
+
     @Column(name = "NAME")
     private String name ;
 

@@ -10,6 +10,7 @@ import org.youcode.cch.stage.Stage;
 @Mapper(componentModel = "spring" , uses = EmbeddedCompetitionDTOToCompetitionEntityMapper.class)
 public interface StageEntityToStageResponseDTOMapper extends BaseMapper<Stage , StageResponseDTO> {
 
+    @Mapping(source = "isCompleted" , target = "isCompleted")
     @Mapping(source = "competition" , target = "competition")
     StageResponseDTO entityToDto(Stage s);
 }

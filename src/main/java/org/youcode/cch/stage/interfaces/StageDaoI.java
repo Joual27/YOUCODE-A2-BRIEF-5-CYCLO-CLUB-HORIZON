@@ -9,4 +9,6 @@ import java.util.List;
 public interface StageDaoI extends GenericDaoI<Stage , Long> {
 
     List<Stage> getStagesOfCompetition (Competition competition);
+
+    void setStageAsCompleted(Stage stage);
 }

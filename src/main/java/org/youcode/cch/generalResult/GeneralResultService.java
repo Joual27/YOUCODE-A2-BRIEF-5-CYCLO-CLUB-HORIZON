@@ -7,9 +7,11 @@ import org.youcode.cch.cyclist.interfaces.CyclistDaoI;
 import org.youcode.cch.exceptions.EntityNotFoundException;
 import org.youcode.cch.generalResult.DTOs.CreateGeneralResultDTO;
 import org.youcode.cch.generalResult.DTOs.GeneralResultResponseDTO;
+import org.youcode.cch.generalResult.embeddables.GeneralResultKey;
 import org.youcode.cch.generalResult.interfaces.GeneralResultDaoI;
 import org.youcode.cch.generalResult.interfaces.GeneralResultServiceI;
 import org.youcode.cch.generalResult.mappers.CreateGeneralResultDTOToGeneralResultEntityMapper;
+import org.youcode.cch.generalResult.mappers.GeneralResultEntityToGeneralResultResponseDTOMapper;
 
 import java.util.Comparator;
 import java.util.List;
@@ -19,12 +21,14 @@ public class GeneralResultService implements GeneralResultServiceI {
     private final CompetitionDaoI competitionDao;
     private final CyclistDaoI cyclistDao;
     private final CreateGeneralResultDTOToGeneralResultEntityMapper createGeneralResultDTOToGeneralResultEntityMapper;
+    private final GeneralResultEntityToGeneralResultResponseDTOMapper generalResultEntityToGeneralResultResponseDTOMapper;
 
-    public GeneralResultService(GeneralResultDaoI generalResultDao , CompetitionDaoI competitionDao , CyclistDaoI cyclistDao ,  CreateGeneralResultDTOToGeneralResultEntityMapper createGeneralResultDTOToGeneralResultEntityMapper ){
+    public GeneralResultService(GeneralResultDaoI generalResultDao , CompetitionDaoI competitionDao , CyclistDaoI cyclistDao ,  CreateGeneralResultDTOToGeneralResultEntityMapper createGeneralResultDTOToGeneralResultEntityMapper , GeneralResultEntityToGeneralResultResponseDTOMapper generalResultEntityToGeneralResultResponseDTOMapper){
         this.generalResultDao = generalResultDao;
         this.competitionDao = competitionDao;
         this.cyclistDao = cyclistDao;
         this.createGeneralResultDTOToGeneralResultEntityMapper = createGeneralResultDTOToGeneralResultEntityMapper;
+        this.generalResultEntityToGeneralResultResponseDTOMapper = generalResultEntityToGeneralResultResponseDTOMapper;
     }
 
     private int assignOverallRankToCyclist(GeneralResult generalResultToCreate){
@@ -52,6 +56,31 @@ public class GeneralResultService implements GeneralResultServiceI {
         GeneralResult generalResultToCreate = createGeneralResultDTOToGeneralResultEntityMapper.toEntity(generalResultDTO);
         generalResultToCreate.setOverallRank(assignOverallRankToCyclist(generalResultToCreate));
         GeneralResult createdGeneralResult = generalResultDao.save(generalResultToCreate);
-        return
+        return generalResultEntityToGeneralResultResponseDTOMapper.entityToDto(createdGeneralResult);
+    }
+
+    @Override
+    public GeneralResultResponseDTO getGeneralResultOfCyclistInCompetition(Long competitionId , Long cyclistId){
+        GeneralResultKey id = new GeneralResultKey(competitionId , cyclistId);
+        GeneralResult generalResult = generalResultDao.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No General result found with given data"));
+        return generalResultEntityToGeneralResultResponseDTOMapper.entityToDto(generalResult);
+    }
+
+    @Override
+    public List<GeneralResultResponseDTO> getAllGeneralResults(){
+        List<GeneralResult> results = generalResultDao.findAll();
+        return results.stream()
+                .map(generalResultEntityToGeneralResultResponseDTOMapper::entityToDto)
+                .toList();
+    }
+
+    @Override
+    public GeneralResultResponseDTO delete(Long competitionId , Long cyclistId){
+        GeneralResultKey id = new GeneralResultKey(competitionId , cyclistId);
+        GeneralResult generalResultToDelete = generalResultDao.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No General result found with given data"));
+        generalResultDao.deleteById(id);
+        return generalResultEntityToGeneralResultResponseDTOMapper.entityToDto(generalResultToDelete);
     }
 }

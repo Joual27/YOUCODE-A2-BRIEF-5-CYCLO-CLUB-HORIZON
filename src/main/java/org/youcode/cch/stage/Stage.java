@@ -26,6 +26,9 @@ public class Stage extends BaseEntity {
     @Column(name = "TYPE")
     private String type;
 
+    @Column(name = "IS_COMPLETED")
+    private boolean isCompleted;
+
     @ManyToOne
     @JoinColumn(name = "COMPETITION_ID")
     private Competition competition ;
@@ -81,5 +84,13 @@ public class Stage extends BaseEntity {
 
     public void setResults(List<Result> results) {
         this.results = results;
+    }
+
+    public boolean getIsCompleted() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(boolean completed) {
+        isCompleted = completed;
     }
 }

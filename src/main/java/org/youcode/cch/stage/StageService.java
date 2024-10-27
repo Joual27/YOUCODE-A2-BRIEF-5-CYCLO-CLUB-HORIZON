@@ -39,6 +39,7 @@ public class StageService implements StageServiceI {
     }
     public StageResponseDTO save(CreateAndUpdateStageDTO c){
         Stage stageToCreate = convertFromCreateOrUpdateDTOToEntity(c);
+        stageToCreate.setIsCompleted(false);
         Stage createdStage = stageDao.save(stageToCreate);
         stageToCreate.setId(createdStage.getId());
         return convertToResponseDTO(stageToCreate);
@@ -70,5 +71,13 @@ public class StageService implements StageServiceI {
 
     private Stage convertFromResponseDTOToEntity(StageResponseDTO stageResponseDTO){
         return stageEntityToStageResponseDTOMapper.toEntity(stageResponseDTO);
+    }
+
+    public StageResponseDTO markStageAsCompleted(Long id){
+        Stage s = stageDao.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No stage found with given Id !"));
+        stageDao.setStageAsCompleted(s);
+        s.setIsCompleted(true);
+        return stageEntityToStageResponseDTOMapper.entityToDto(s);
     }
 }

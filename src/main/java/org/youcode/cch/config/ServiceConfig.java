@@ -15,6 +15,11 @@ import org.youcode.cch.cyclist.interfaces.CyclistServiceI;
 import org.youcode.cch.cyclist.mappers.CreateCyclistDTOToCyclistEntityMapper;
 import org.youcode.cch.cyclist.mappers.CyclistEntityToCyclistResponseDTOMapper;
 //import org.youcode.cch.result.ResultService;
+import org.youcode.cch.generalResult.GeneralResultService;
+import org.youcode.cch.generalResult.interfaces.GeneralResultDaoI;
+import org.youcode.cch.generalResult.interfaces.GeneralResultServiceI;
+import org.youcode.cch.generalResult.mappers.CreateGeneralResultDTOToGeneralResultEntityMapper;
+import org.youcode.cch.generalResult.mappers.GeneralResultEntityToGeneralResultResponseDTOMapper;
 import org.youcode.cch.result.ResultService;
 import org.youcode.cch.result.interfaces.ResultDaoI;
 import org.youcode.cch.result.interfaces.ResultServiceI;
@@ -42,10 +47,10 @@ public class ServiceConfig {
         return new CyclistService(cyclistDao , cyclistEntityToCyclistResponseDTOMapper,createCyclistDTOToCyclistEntityMapper);
     }
 
-//    @Bean
-//    public GeneralResultServiceI generalResultService(GeneralResultDaoI generalResultDao){
-//        return new GeneralResultService(generalResultDao);
-//    }
+    @Bean
+    public GeneralResultServiceI generalResultService(GeneralResultDaoI generalResultDao , CompetitionDaoI competitionDao , CyclistDaoI cyclistDao , CreateGeneralResultDTOToGeneralResultEntityMapper createGeneralResultDTOToGeneralResultEntityMapper , GeneralResultEntityToGeneralResultResponseDTOMapper generalResultEntityToGeneralResultResponseDTOMapper){
+        return new GeneralResultService(generalResultDao,competitionDao , cyclistDao ,createGeneralResultDTOToGeneralResultEntityMapper , generalResultEntityToGeneralResultResponseDTOMapper);
+    }
 
     @Bean
     public ResultServiceI resultService(ResultDaoI resultDao , CreateResultDTOToResultEntityMapper createResultDTOToResultEntityMapper , StageDaoI stageDao , CyclistDaoI cyclistDao , ResultEntityToResultResponseDTOMapper resultEntityToResultResponseDTOMapper){

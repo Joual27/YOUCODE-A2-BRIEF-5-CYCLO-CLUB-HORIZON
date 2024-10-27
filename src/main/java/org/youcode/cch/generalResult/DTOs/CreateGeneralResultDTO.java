@@ -1,10 +1,16 @@
 package org.youcode.cch.generalResult.DTOs;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.time.Duration;
 
 public class CreateGeneralResultDTO {
+
+    @NotNull
     private Long cyclistId;
+    @NotNull
     private Long competitionId;
+    @NotNull
     private Duration overallTime;
 
     public CreateGeneralResultDTO(){}

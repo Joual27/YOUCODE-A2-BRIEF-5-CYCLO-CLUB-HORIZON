@@ -24,12 +24,14 @@ public class StageService implements StageServiceI {
         this.stageEntityToStageResponseDTOMapper = stageEntityToStageResponseDTOMapper;
     }
 
+    @Override
     public List<StageResponseDTO> getAllStages(){
         List<Stage> stages = stageDao.findAll();
         return stages.stream()
                 .map(this::convertToResponseDTO)
                 .toList();
     }
+    @Override
     public StageResponseDTO getStageById(Long id){
         Optional<Stage> s = stageDao.findById(id);
         if (s.isEmpty()){
@@ -37,6 +39,7 @@ public class StageService implements StageServiceI {
         }
         return convertToResponseDTO(s.get());
     }
+    @Override
     public StageResponseDTO save(CreateAndUpdateStageDTO c){
         Stage stageToCreate = convertFromCreateOrUpdateDTOToEntity(c);
         stageToCreate.setIsCompleted(false);
@@ -44,6 +47,8 @@ public class StageService implements StageServiceI {
         stageToCreate.setId(createdStage.getId());
         return convertToResponseDTO(stageToCreate);
     }
+
+    @Override
     public StageResponseDTO update(Long id ,CreateAndUpdateStageDTO c){
         Stage stageToUpdate = convertFromCreateOrUpdateDTOToEntity(c);
         if (stageDao.findById(id).isEmpty()){
@@ -55,6 +60,8 @@ public class StageService implements StageServiceI {
             return convertToResponseDTO(stageToUpdate);
         }
     }
+
+    @Override
     public StageResponseDTO deleteById(Long id){
         StageResponseDTO stageToDelete = getStageById(id);
         stageDao.deleteById(id);
@@ -73,6 +80,7 @@ public class StageService implements StageServiceI {
         return stageEntityToStageResponseDTOMapper.toEntity(stageResponseDTO);
     }
 
+    @Override
     public StageResponseDTO markStageAsCompleted(Long id){
         Stage s = stageDao.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No stage found with given Id !"));
@@ -80,4 +88,6 @@ public class StageService implements StageServiceI {
         s.setIsCompleted(true);
         return stageEntityToStageResponseDTOMapper.entityToDto(s);
     }
+
+
 }

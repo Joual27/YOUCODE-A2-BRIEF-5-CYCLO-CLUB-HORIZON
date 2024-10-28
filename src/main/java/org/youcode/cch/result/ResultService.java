@@ -89,4 +89,5 @@ public class ResultService implements ResultServiceI {
         return resultEntityToResultResponseDTOMapper.entityToDto(resToDelete);
     }
 
+
 }

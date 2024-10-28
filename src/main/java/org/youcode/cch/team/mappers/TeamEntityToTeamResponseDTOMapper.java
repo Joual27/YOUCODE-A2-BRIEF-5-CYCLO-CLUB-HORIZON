@@ -31,4 +31,5 @@ public abstract class TeamEntityToTeamResponseDTOMapper implements BaseMapper<Te
                 .map(cyclistEntityToEmbeddedCyclistDTOMapper::entityToDto)
                 .toList();
     }
+
 }

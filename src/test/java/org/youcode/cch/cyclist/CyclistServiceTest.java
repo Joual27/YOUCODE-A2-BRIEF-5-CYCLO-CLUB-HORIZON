@@ -1,10 +1,10 @@
 package org.youcode.cch.cyclist;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import org.youcode.cch.cyclist.DTOs.CreateAndUpdateCyclistDTO;
 import org.youcode.cch.cyclist.DTOs.CyclistResponseDTO;
 import org.youcode.cch.cyclist.interfaces.CyclistDaoI;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+
 public class CyclistServiceTest {
     @Mock
     private CyclistDaoI cyclistDao;
@@ -32,6 +32,11 @@ public class CyclistServiceTest {
 
     @InjectMocks
     private CyclistService cyclistService;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
 
     @Test

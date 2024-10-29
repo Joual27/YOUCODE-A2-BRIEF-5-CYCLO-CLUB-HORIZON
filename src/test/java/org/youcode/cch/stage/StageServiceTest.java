@@ -1,9 +1,11 @@
 package org.youcode.cch.stage;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.youcode.cch.competition.DTOs.EmbeddedCompetitionDTO;
 import org.youcode.cch.exceptions.EntityNotFoundException;
@@ -31,6 +33,10 @@ public class StageServiceTest {
     @InjectMocks
     private StageService stageService;
 
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     public void testGetAllStages(){
